@@ -1,9 +1,15 @@
 pipeline {
     agent any
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
-                bat 'docker run --rm -e CI=true -v "%WORKSPACE%":/workspace -w /workspace node:26.13.0-alpine3.24 node --eval "console.log(process.arch,process.platform)"'
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                bat 'set'
             }
         }
     }
