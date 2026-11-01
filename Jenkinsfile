@@ -1,10 +1,9 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'maven:3.10.0-eclipse-temurin-21-alpine' } }
+    agent any
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+                bat 'docker run --rm -v "%WORKSPACE%":/workspace -w /workspace maven:3.10.0-eclipse-temurin-21-alpine mvn --version'
             }
         }
     }
