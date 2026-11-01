@@ -1,15 +1,10 @@
+/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any
+    agent { docker { image 'maven:3.10.0-eclipse-temurin-21-alpine' } }
     stages {
-        stage('Étape 1 : Bonjour') {
+        stage('build') {
             steps {
-                echo 'Début du pipeline à plusieurs étapes'
-                bat 'echo Hello World depuis Windows'
-            }
-        }
-        stage('Étape 2 : Vérification') {
-            steps {
-                bat 'dir'
+                sh 'mvn --version'
             }
         }
     }
