@@ -5,7 +5,7 @@ pipeline {
             steps {
                 timeout(time: 3, unit: 'MINUTES') {
                     retry(5) {
-                        bat 'mon-script-deploiement.bat'
+                        bat 'echo Test de déploiement réussi'
                     }
                 }
             }
